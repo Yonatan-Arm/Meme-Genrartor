@@ -5,17 +5,23 @@ function init() {
       onClickImg(item);
     });
   });
+window.addEventListener('resize', () => {
+    resizeCanvas()})
 }
 
 function onOpenMemeGenerator() {
-  var generator = document.querySelector(".Meme-Editor");
-  generator.classList.add("flex");
   closeGallery();
+  getMeme()
 }
 
 function onOpenGallery() {
   renderGallery();
   closeGenerator();
+  document.querySelectorAll("img").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      onClickImg(item);
+    });
+  });
 }
 
 function onClickImg(img) {
@@ -33,3 +39,15 @@ function closeGallery() {
   var gallery = document.querySelector(".image-Gallery");
   gallery.innerHTML = "";
 }
+
+function onDrawText(txt){
+    drawText(txt, 20 , 50)
+}
+
+ function onChangeColor(color){
+     console.log(color);
+ }
+
+ function OnDownload(link){
+     downloadImg(link)
+ }

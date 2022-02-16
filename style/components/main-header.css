@@ -12,7 +12,7 @@ font-size: 3em;
 .btn-page{
     height: 2rem;
     background-color: var(--clr3) ;
-    border-radius: 25%;
+    border-radius: 15%;
 }
 
 .btn-page:hover{

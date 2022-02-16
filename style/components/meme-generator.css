@@ -1,9 +1,52 @@
 
-
 #my-canvas{
 background-color: #fff;
 }
 
 .Meme-Editor{
     display: none;
+    width: 60vw;
+}
+.canvas-container{
+    width: 70%;
+}
+.Editor-Tools{
+    background-color: #fff;
+    width: 35%;
+    padding:1rem;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.input-txt{
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 5%;
+    height: 2.5rem;
+}
+.button-Edit{
+    width: 80%;
+    margin-inline-start: 4rem;
+}
+
+.btn-add{
+    width: 2rem;
+    height: 2rem;
+    background-color:#06FF00;
+}
+.btn-delete{
+    width: 2rem;
+    height: 2rem;
+}
+.btn-next{
+    width: 2rem;
+    height: 2rem;
+}
+.btn-font{
+    width: 3rem;
+    height: 3rem;
+}
+.btn-Sociel{
+    width: 5rem;
+    height: 2rem;
 }
