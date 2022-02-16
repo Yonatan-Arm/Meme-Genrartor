@@ -15,17 +15,17 @@ function createImg(id){
         url: `/img/${id}.jpg`
     }
     return img;
-
 }
 
 function renderGallery(){
-    if(gImgs.length===0) createGallery()
+
  var gallery=document.querySelector('.image-Gallery')
  var strHTML='';
  gImgs.forEach(img => 
-  strHTML+=`<img src="${img.url}" alt="meme"> `)
+  strHTML+=`<img src="${img.url}"  data-Id=${img.id} alt="meme"> `)
   gallery.innerHTML=strHTML
-}
+ }
+
  
 function closeGallery(){
     var gallery = document.querySelector('.image-Gallery')
