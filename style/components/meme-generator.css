@@ -3,3 +3,7 @@
 #my-canvas{
 background-color: #fff;
 }
+
+.main-Editor{
+    display: none;
+}
