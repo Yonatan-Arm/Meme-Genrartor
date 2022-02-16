@@ -1,36 +1,27 @@
 var gCurrShape;
 var gCanvas = document.getElementById("my-canvas");
 var gCtx = gCanvas.getContext("2d");
-var gMeme;
+var gCurrMeme;
 var gCurrImg;
-
-
-function getMeme(img){
-  if(!img) img = gCurrImg
-  var generator = document.querySelector(".Meme-Editor");
-  generator.style.display="flex";
-  gCanvas.style.display = "block";
-  renderMeme(img);
-}
+var gColorText= 'white';
 
 
 
-function  createMeme(imgId , txt , color){
+
+
+function  createMeme(imgId){
   var gMeme = {
     imgId,
     selectedLineIdx: 0,
-    lines: [
-      {
-        txt,
-        size: 40,
-        align: "center",
-        color
-      },
-    ],
+    lines:[],
   };
+  gCurrMeme =gMeme
 return gMeme;
 }
 
+function getMeme(img){
+  
+}
 
 function drawImg(elImg) {
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
@@ -39,15 +30,29 @@ function drawImg(elImg) {
 function drawText(text, x, y) {
   gCtx.lineWidth = 1;
   gCtx.strokeStyle = 'black';
-  gCtx.fillStyle = 'white';
+  gCtx.fillStyle = gColorText ;
   gCtx.font = '40px Impact';
   gCtx.fillText(text, x, y);
   gCtx.strokeText(text, x, y);
 }
  
+function setLineTxt(txt){
+var gtxt={
+    txt,
+    size: 40,
+    align: "center",
+    color: gColorText
+}
+  gCurrMeme.lines.push(gtxt)
+  var lines= gCurrMeme.lines
+  lines.forEach(line=>{
+  drawText(line.txt, 50, 50, line.color)
+})
+}
 
-
-
+function  setColor(color){
+  gColorText=color;
+}
 
 
 

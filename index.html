@@ -25,7 +25,8 @@
         <canvas id="my-canvas" height="400"  width="500" onclick="draw(event)" ></canvas>
       </div>
       <section class="Editor-Tools flex align-items">
-        <input onchange="onDrawText(value)" type="text" class="input-txt" placeholder="write your meme"/>
+        
+        <input  id="Meme" oninput="renderMeme(value)" onchange="onDrawText(this.value)" type="text" class="input-txt" placeholder="write your meme"/>
         <div class="button-Edit ">
             <button class="btn-add" onclick="onAddText()">➕</button>
             <button class="btn-delete" onclick="onDeleteText()">🗑</button>

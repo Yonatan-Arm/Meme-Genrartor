@@ -22,6 +22,7 @@ function onOpenGallery() {
 
 function onClickImg(img) {
     onOpenMemeGenerator(img)
+    closeGallery()
 }
 
 

@@ -1,35 +1,56 @@
 var gCurrShape;
-
+var gCanvas;
 var gMeme;
+var gCtx ;
 var gCurrImg;
 
+
+  
+
 function onOpenMemeGenerator(img) {
-  var gCanvas = document.getElementById("my-canvas");
-  var gCtx = gCanvas.getContext("2d");
+   gCanvas = document.getElementById("my-canvas");
+   gCtx = gCanvas.getContext("2d");
   closeGallery();
-  getMeme(img);
+  renderImgMeme(img) 
   window.addEventListener("resize", () => {
     resizeCanvas();
   });
 }
 
-function renderMeme(img) {
-  closeGallery();
+function clearCanvas() {
+    gCtx.clearRect(x, y, gCanvas.width, gCanvas.height)
+  }
+
+  function renderMeme(txt){
+    drawImg(gCurrImg)
+   gCurrMeme.lines.forEach(line =>{
+    drawText(line.txt, 50, 50)}
+   )
+   drawText(txt, 50, 50)
+  }
+
+
+function renderImgMeme(img) {
+  if(!img) img = gCurrImg
+  var generator = document.querySelector(".Meme-Editor");
+  generator.style.display="flex";
+  gCanvas.style.display = "block";
   drawImg(img);
-  gCurrImg = meme;
-  gMeme = createMeme(img.dataset.id, txt, color);
+  gCurrImg = img;
+  gMeme = createMeme(img.dataset.id);
 }
 
 function onDrawText(txt) {
-  drawText(txt, 20, 50);
+    setLineTxt(txt)
 }
+ 
 
 function OnDownload(link) {
   downloadImg(link);
 }
 
 function onChangeColor(color) {
-  console.log(color);
+  setColor(color);
 }
 
 function closeGenerator() {
