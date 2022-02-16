@@ -4,9 +4,6 @@ var gCtx = gCanvas.getContext("2d");
 var gMeme;
 var gCurrImg;
 
-  
-
-
 
 function getMeme(img){
   if(!img) img = gCurrImg
@@ -17,35 +14,23 @@ function getMeme(img){
 }
 
 
-function renderMeme(meme) {
-  closeGallery();
-  drawImg(meme);
-  gCurrImg = meme
-  gMeme=createMeme(meme.dataset.id)
-}
 
-
-function  createMeme(imgId){
+function  createMeme(imgId , txt , color){
   var gMeme = {
     imgId,
     selectedLineIdx: 0,
     lines: [
       {
-        txt: "I sometimes eat Falafel",
-        size: 20,
-        align: "left",
-        color: "red",
+        txt,
+        size: 40,
+        align: "center",
+        color
       },
     ],
   };
 return gMeme;
 }
 
-function resizeCanvas() {
-  var elContainer = document.querySelector(".canvas-container");
-  gCanvas.width = elContainer.offsetWidth - 100
-  gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height);
-}
 
 function drawImg(elImg) {
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
@@ -53,9 +38,9 @@ function drawImg(elImg) {
 
 function drawText(text, x, y) {
   gCtx.lineWidth = 1;
-  gCtx.strokeStyle = 'brown';
-  gCtx.fillStyle = 'black';
-  gCtx.font = '20px Arial';
+  gCtx.strokeStyle = 'black';
+  gCtx.fillStyle = 'white';
+  gCtx.font = '40px Impact';
   gCtx.fillText(text, x, y);
   gCtx.strokeText(text, x, y);
 }
