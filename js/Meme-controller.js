@@ -83,7 +83,7 @@ function closeGenerator() {
 
 function resizeCanvas() {
   var elContainer = document.querySelector(".canvas-container");
-  gCanvas.width = elContainer.offsetWidth - 100;
+  gCanvas.width = elContainer.offsetWidth -10;
   renderMeme()
   // gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height);
 }

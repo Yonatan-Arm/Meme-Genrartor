@@ -1,5 +1,5 @@
 
- @media (max-width :750px){
+ @media (max-width :800px){
 .btn-menu{
     display:block;
     background-color: var(--clr2);
@@ -31,7 +31,7 @@ body {
     pointer-events: auto;
 }
 .main-layout{
-    pointer-events: none;
+    pointer-events: auto;
 }
 .btn-close{
     grid-area: btn;
@@ -43,6 +43,20 @@ body {
     background-color: var(--clr3) ;
     border-radius: 15%;
     pointer-events: auto;
+}
+.Meme-Editor{
+    flex-direction: column;
+    gap: 2rem;
+}
+.canvas-container{
+    width: 70%;
+}
+.Editor-Tools{
+    flex-direction: row;
+    width: 80%;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
 }
 
  }
