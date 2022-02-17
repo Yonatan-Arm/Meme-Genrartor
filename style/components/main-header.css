@@ -2,7 +2,6 @@
     height: 6rem;
     background-color: var(--clr2);
     padding: 4rem;
-
 }
 
 .logo{
@@ -13,6 +12,11 @@ font-size: 3em;
     height: 2rem;
     background-color: var(--clr3) ;
     border-radius: 15%;
+}
+
+.btn-menu{
+    display:none;
+    
 }
 
 .btn-page:hover{

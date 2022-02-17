@@ -79,25 +79,25 @@ function draw(lineIdx,text,textColor) {
       drawText(text,50, 50,textColor);
       var x= 50 ;
       var y =50;
-      gCurrMeme.lines[lineIdx].pos={x, y}
+      updatePos(lineIdx,x, y)
       break;
     case 1:
       drawText(text,50, 400,textColor);
       var x= 50 ;
       var y =400;
-      gCurrMeme.lines[lineIdx].pos={x, y}
+      updatePos(lineIdx,x, y)
       break;
     case 2:
       drawText(text,50, 200,textColor);
       var x= 50 ;
       var y =50;
-      gCurrMeme.lines[lineIdx].pos={x, y}
+      updatePos(lineIdx,x, y)
       break;
       default:
       var x= getRandomIntInclusive(50,200)
       var y= getRandomIntInclusive(50, 200)
       drawText(text,x,y,textColor);
-      gCurrMeme.lines[lineIdx].pos={x, y}
+      updatePos(lineIdx,x, y)
       break;
 }
 }

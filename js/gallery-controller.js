@@ -31,3 +31,16 @@ function closeGallery() {
   gallery.innerHTML = "";
 }
 
+
+function openMenu() {
+  var elBtn = document.querySelector('.pages-btn')
+  elBtn.style.display='grid' ;
+  elBtn.innerHTML += `<button class="btn-close" onclick="closeMenu()">X</button>`
+}
+
+function closeMenu() {
+  var elBtn = document.querySelector('.pages-btn')
+  elBtn.style.display='none' ;
+}
+
+

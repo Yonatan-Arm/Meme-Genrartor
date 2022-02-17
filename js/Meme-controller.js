@@ -5,7 +5,7 @@ var gCtx ;
 var gCurrImg;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 addListeners()
-
+var isDrag=false;
 
   
 
@@ -42,8 +42,9 @@ function clearCanvas() {
     draw(2,txt)
   }
 
-  function updatePos(x,y){
-gMeme.lines.pos= {x,y}
+  function updatePos(line,x,y){
+    if(!gMeme.lines[line])return
+gMeme.lines[line].pos= {x,y}
   }
 
 

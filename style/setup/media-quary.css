@@ -1,0 +1,52 @@
+
+ @media (max-width :750px){
+.btn-menu{
+    display:block;
+    background-color: var(--clr2);
+}
+.pages-btn{
+    display:none;
+    max-width: 70vw;
+    max-height:60%;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--clr2);
+    padding: 30px;
+    color: rgb(184, 184, 184);
+    box-shadow: 10px 10px 10px 10px;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity .3s;
+    grid-area: pages;
+    grid-template-areas: 
+    "btn"
+    "pages";
+    gap:2rem;
+}
+body {
+    opacity: 1;
+    pointer-events: auto;
+}
+.main-layout{
+    pointer-events: none;
+}
+.btn-close{
+    grid-area: btn;
+    pointer-events: auto;
+}
+
+.btn-page{
+    height: 2rem;
+    background-color: var(--clr3) ;
+    border-radius: 15%;
+    pointer-events: auto;
+}
+
+ }
+
+
+
+
