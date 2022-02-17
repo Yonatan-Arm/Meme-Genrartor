@@ -21,7 +21,7 @@ return gMeme;
 
 
 
-function drawText(text, x, y,textColor) {
+function drawText(text, x, y,textColor=gColorText) {
   gCtx.lineWidth = 1;
   gCtx.strokeStyle = 'black';
   gCtx.fillStyle = textColor ;
@@ -47,14 +47,11 @@ var gtxt={
     size: 40,
     align: "center",
     color: gColorText,
-    lineIdx
+    lineIdx,
+    pos:0
 }
 gCurrMeme.lines.push(gtxt)
-var lines= gCurrMeme.lines
-  lines.forEach(line=>{
-    draw(line.lineIdx,line.txt, line.color) 
-    lineIdx++
-  })
+renderMeme(txt)
 }
 
 function  setColor(color){
@@ -72,41 +69,55 @@ function downloadImg(elLink){
 
 
 
-// function draw(ev) {
-//   const offsetX = ev.offsetX;
-//   const offsetY = ev.offsetY;
-//   // console.log(offsetX,offsetY)
-//   // const { offsetX, offsetY } = ev
-//   switch (gCurrShape) {
-//     case "triangle":
-//       drawTriangle(offsetX, offsetY);
-//       break;
-//     case "rect":
-//       drawRect(offsetX, offsetY);
-//       break;
-//     case "arc":
-//       drawarc(offsetX, offsetY, 100, 0, 2 * Math.PI);
-//       break;
-//     case "line":
-//       drawLine(offsetX, offsetY);
-//       break;
-//   }
-// }
-
 
 
 function draw(lineIdx,text,textColor) {
+  if(!text) return
   if(!textColor) textColor=gColorText
   switch (lineIdx) {
     case 0:
       drawText(text,50, 50,textColor);
+      var x= 50 ;
+      var y =50;
+      gCurrMeme.lines[lineIdx].pos={x, y}
       break;
     case 1:
       drawText(text,50, 400,textColor);
+      var x= 50 ;
+      var y =400;
+      gCurrMeme.lines[lineIdx].pos={x, y}
       break;
     case 2:
       drawText(text,50, 200,textColor);
+      var x= 50 ;
+      var y =50;
+      gCurrMeme.lines[lineIdx].pos={x, y}
       break;
-  }
+      default:
+      var x= getRandomIntInclusive(50,200)
+      var y= getRandomIntInclusive(50, 200)
+      drawText(text,x,y,textColor);
+      gCurrMeme.lines[lineIdx].pos={x, y}
+      break;
+}
+}
+
+
+
+function getMemePos(){
+  const pos= gCurrMeme.lines.pos
+  return pos
+ }
+ 
+ function setTextDrag(line) {
+  gMeme.selectedLineIdx = line.lineIdx
+  console.log(line);
+}
+
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 

@@ -26,9 +26,9 @@
       </div>
       <section class="Editor-Tools flex align-items">
         
-        <input  id="Meme" oninput="renderMeme(value)" onchange="onDrawText(this.value)" type="text" class="input-txt" placeholder="write your meme"/>
+        <input  id="Meme" oninput="ShowTextInput(this.value)" type="text" class="input-txt" placeholder="write your meme"/>
         <div class="button-Edit ">
-            <button class="btn-add" onclick="onAddText()">➕</button>
+            <button class="btn-add" onclick="onDrawText()">➕</button>
             <button class="btn-delete" onclick="onDeleteText()">🗑</button>
             <button class="btn-next" onclick="onChooseLine()">↕</button>
         </div>
@@ -62,9 +62,9 @@
       </section>
     </section>
 
-    <script src="/js/gallery-service.js"></script>
-    <script src="/js/genrator-services.js"></script>
-    <script src="/js/Meme-controller.js"></script>
-    <script src="/js/gallery-controller.js"></script>
+    <script src="js/genrator-services.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/Meme-controller.js"></script>
+    <script src="js/gallery-controller.js"></script>
   </body>
 </html>
