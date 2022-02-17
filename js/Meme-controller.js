@@ -1,4 +1,4 @@
-var gCurrShape;
+
 var gCanvas;
 var gMeme;
 var gCtx ;
@@ -21,12 +21,20 @@ function clearCanvas() {
     gCtx.clearRect(x, y, gCanvas.width, gCanvas.height)
   }
 
+
+
   function renderMeme(txt){
     drawImg(gCurrImg)
+    var lineIdx=0
+    if(gCurrMeme.lines.length === 0){
+      draw(2,txt)
+
+    }else{
    gCurrMeme.lines.forEach(line =>{
-    drawText(line.txt, 50, 50)}
-   )
-   drawText(txt, 50, 50)
+     draw(lineIdx,line.txt)
+     lineIdx++
+   })}
+
   }
 
 
