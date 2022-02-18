@@ -5,6 +5,8 @@ var gCtx ;
 var gCurrImg;
 var selectedLine =-1;
 var gStartPos;
+var gCurrLine;
+var isSelected = false;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 addListeners()
 var isDrag=false;
@@ -54,7 +56,11 @@ function clearCanvas() {
   
 
   function ShowTextInput(txt){
-    drawText(txt,50, 200,gColorText)
+    if(isSelected){
+      if(selectedLine>-1)gCurrLine=removeLine(selectedLine)
+      renderMeme()
+      drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
+    }else drawText(txt,50, 200,gColorText)
   }
 
   function updatePos(line,x,y){
@@ -76,9 +82,11 @@ function renderImgMeme(img) {
 function onDrawText(txt) {
   width=gCtx.measureText(txt).width
   var txt = document.getElementById('Meme')
-
-    setLineTxt(txt.value, gFont)
+  
+  if(isSelected)setLineTxt(txt.value, gFont , gCurrLine[0].pos)
+  else setLineTxt(txt.value, gFont)
     txt.value = ''
+    isSelected=false
     
 }
 
@@ -145,16 +153,24 @@ function onDown(ev) {
 
 }
 
-// function onChooseLine(){ 
-//   var txt = document.getElementById('Meme')
-//    var line= gMeme.lines[selectedLine]
-//    gCtx.shadowBlur = 10;
-//    gCtx.shadowColor = "black";
-//    gCtx.strokeRect(line.pos.x , line.pos.y-gFont, width, line.pos.y);
-// // context.strokeStyle = 'blue';
-//   // gMeme.lines[selectedLine].style.color = 'blue' 
-//   txt.value=gMeme.lines[selectedLine].txt 
-// }
+function onChooseLine(){ 
+  if(selectedLine === -1) selectedLine=0
+  if(gMeme.lines[selectedLine]){
+    var prevLine= gMeme.lines[selectedLine-1]
+    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -10 , prevLine.pos.y-gFont -10, width +10, prevLine.pos.y +10)
+    renderMeme()
+    isSelected= true
+    var line= gMeme.lines[selectedLine]
+    gCtx.strokeStyle = 'blue';
+    gCtx.strokeRect(line.pos.x -10 , line.pos.y-gFont -10, width +10, line.pos.y +10);
+   var txt= document.getElementById("Meme")
+   txt.value=gMeme.lines[selectedLine].txt 
+   selectedLine++
+  }
+  if(!gMeme.lines[selectedLine]) selectedLine = -1
+}
+
+
 
 function isTextClicked(clickedPos) {
   selectedLine= gMeme.lines.findIndex(line =>{

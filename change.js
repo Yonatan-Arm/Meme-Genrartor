@@ -154,3 +154,8 @@ function SetTxtLocation(lineIdx,text,textColor) {
         break;
     }
   }
+
+
+
+
+  gCtx.shadowColor = "blue";

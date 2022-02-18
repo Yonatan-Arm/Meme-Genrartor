@@ -23,18 +23,12 @@ return gMeme;
 
 
 
-
-
-// function getMeme(img){
-  
-// }
-
 function drawImg(elImg) {
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
 }
 
  
-function setLineTxt(txt , size ){
+function setLineTxt(txt , size ,pos = 0){
   var lineIdx= gCurrMeme.lines.length
 var gtxt={
     txt,
@@ -42,7 +36,7 @@ var gtxt={
     align: "center",
     color: gColorText,
     lineIdx,
-    pos:0
+    pos
 }
 
 gCurrMeme.lines.push(gtxt)
@@ -53,6 +47,12 @@ function  setColor(color){
   gColorText=color;
 }
 
+
+function removeLine(lineIdx){
+var line = gCurrMeme.lines.splice([lineIdx-1],1)
+  selectedLine= -1
+return line
+}
 
 
 function downloadImg(elLink){
