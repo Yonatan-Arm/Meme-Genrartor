@@ -13,7 +13,7 @@ function createGallery(){
 function createImg(id){
     var img={
         id,
-        url: `/img/${id}.jpg`
+        url: `img/${id}.jpg`
     }
     return img;
 }
