@@ -157,12 +157,12 @@ function onChooseLine(){
   if(selectedLine === -1) selectedLine=0
   if(gMeme.lines[selectedLine]){
     var prevLine= gMeme.lines[selectedLine-1]
-    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -10 , prevLine.pos.y-gFont -10, width +10, prevLine.pos.y +10)
+    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFont -2, width , prevLine.pos.y +2)
     renderMeme()
     isSelected= true
     var line= gMeme.lines[selectedLine]
     gCtx.strokeStyle = 'blue';
-    gCtx.strokeRect(line.pos.x -10 , line.pos.y-gFont -10, width +10, line.pos.y +10);
+    gCtx.strokeRect(line.pos.x -2 , line.pos.y-gFont -2, width, line.pos.y+2 );
    var txt= document.getElementById("Meme")
    txt.value=gMeme.lines[selectedLine].txt 
    selectedLine++
