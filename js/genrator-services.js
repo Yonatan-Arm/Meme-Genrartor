@@ -50,6 +50,7 @@ var gtxt={
     lineIdx,
     pos:0
 }
+
 gCurrMeme.lines.push(gtxt)
 renderMeme(txt)
 }
@@ -77,21 +78,15 @@ function draw(lineIdx,text,textColor) {
   switch (lineIdx) {
     case 0:
       drawText(text,50, 50,textColor);
-      var x= 50 ;
-      var y =50;
-      updatePos(lineIdx,x, y)
+      updatePos(lineIdx,50, 50)
       break;
     case 1:
       drawText(text,50, 400,textColor);
-      var x= 50 ;
-      var y =400;
-      updatePos(lineIdx,x, y)
+      updatePos(lineIdx,50, 400)
       break;
     case 2:
       drawText(text,50, 200,textColor);
-      var x= 50 ;
-      var y =50;
-      updatePos(lineIdx,x, y)
+      updatePos(lineIdx,50, 200)
       break;
       default:
       var x= getRandomIntInclusive(50,200)
@@ -109,10 +104,7 @@ function getMemePos(){
   return pos
  }
  
- function setTextDrag(line) {
-  gMeme.selectedLineIdx = line.lineIdx
-  console.log(line);
-}
+
 
 
 function getRandomIntInclusive(min, max) {
