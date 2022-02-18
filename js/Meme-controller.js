@@ -27,13 +27,24 @@ function clearCanvas() {
   }
 
 
+  function drawText(line, x, y,textColor=gColorText) {
+    if(line.size) gFont = line.size 
+    gCtx.lineWidth = 1;
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = textColor ;
+    gCtx.font = `${gFont}px Impact`;
+    if(line.txt) line = line.txt
+    gCtx.fillText(line, x, y);
+    gCtx.strokeText(line, x, y);
+  }
+
 
   function renderMeme(txt){
     drawImg(gCurrImg)
     var lineIdx=0
    gCurrMeme.lines.forEach(line =>{
      if(line.pos.x){
-      drawText(line.txt,line.pos.x,line.pos.y,line.color)
+      drawText(line,line.pos.x,line.pos.y,line.color)
      }else{
        draw(lineIdx,line.txt)
      }
@@ -65,9 +76,16 @@ function renderImgMeme(img) {
 function onDrawText(txt) {
   width=gCtx.measureText(txt).width
   var txt = document.getElementById('Meme')
-    setLineTxt(txt.value)
+
+    setLineTxt(txt.value, gFont)
     txt.value = ''
     
+}
+
+
+function onChangeFontSize(num){
+  gFont += num;
+
 }
 
  
@@ -119,10 +137,10 @@ function addTouchListeners(){
 function onDown(ev) {
   const pos = getEvPos(ev)
   if (isTextClicked(pos) > -1) {
-    setLineDrag()
+    setLineDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
-  } else return
+  } 
 
 
 }
@@ -164,13 +182,13 @@ function onMove(ev) {
 
 function onUp() {
   console.log('onUp()');
-  setLineDrag()
+  setLineDrag(false)
   selectedLine = -1;
   document.body.style.cursor = 'grab'
 }
 
- function setLineDrag(){
-   isDrag = !isDrag;
+ function setLineDrag(flag){
+   isDrag = flag;
 
  }
 

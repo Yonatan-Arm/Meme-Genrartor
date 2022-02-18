@@ -9,6 +9,7 @@ var gColorText= 'white';
 
 
 
+
 function  createMeme(imgId){
   var gMeme = {
     imgId,
@@ -21,30 +22,23 @@ return gMeme;
 
 
 
-function drawText(text, x, y,textColor=gColorText) {
-  gCtx.lineWidth = 1;
-  gCtx.strokeStyle = 'black';
-  gCtx.fillStyle = textColor ;
-  gCtx.font = '40px Impact';
-  gCtx.fillText(text, x, y);
-  gCtx.strokeText(text, x, y);
-}
 
 
-function getMeme(img){
+
+// function getMeme(img){
   
-}
+// }
 
 function drawImg(elImg) {
   gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
 }
 
  
-function setLineTxt(txt){
+function setLineTxt(txt , size ){
   var lineIdx= gCurrMeme.lines.length
 var gtxt={
     txt,
-    size: 40,
+    size,
     align: "center",
     color: gColorText,
     lineIdx,
@@ -67,31 +61,27 @@ function downloadImg(elLink){
     elLink.download = 'my-img';
   }
 
-
-
-
-
-
 function draw(lineIdx,text,textColor) {
+  var line = gMeme.lines[lineIdx];
   if(!text) return
   if(!textColor) textColor=gColorText
   switch (lineIdx) {
     case 0:
-      drawText(text,50, 50,textColor);
+      drawText(line,50, 50,textColor);
       updatePos(lineIdx,50, 50)
       break;
     case 1:
-      drawText(text,50, 400,textColor);
+      drawText(line,50, 400,textColor);
       updatePos(lineIdx,50, 400)
       break;
     case 2:
-      drawText(text,50, 200,textColor);
+      drawText(line,50, 200,textColor);
       updatePos(lineIdx,50, 200)
       break;
       default:
       var x= getRandomIntInclusive(50,200)
       var y= getRandomIntInclusive(50, 200)
-      drawText(text,x,y,textColor);
+      drawText(line,x,y,textColor);
       updatePos(lineIdx,x, y)
       break;
 }
