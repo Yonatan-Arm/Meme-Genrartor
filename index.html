@@ -39,12 +39,11 @@
             <button class="btn-font" onclick="onChooseLine()">≡</button>
             <button class="btn-font"  onclick="">≡</button>
             <button class="btn-font" onclick="">≡</button>
-            <input  type="text" list="fonts" placeholder="IMPACT" />
-            <datalist id="fonts">
+            <select   onchange="onchangeFont(this.value)"  name="fonts" placeholder="IMPACT" />
          <option>IMPACT</option>
             <option>Ariel</option>
             <option>David</option>
-           </datalist>
+          </select>
           <input type="color" oninput="onChangeColor(this.value)"/>
             
         </section>

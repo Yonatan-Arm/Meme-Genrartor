@@ -6,12 +6,13 @@ var gCurrImg;
 var selectedLine =-1;
 var gStartPos;
 var gCurrLine;
+var gFont ="Impact"
 var isSelected = false;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 addListeners()
 var isDrag=false;
 var width=40;
-var gFont=40;
+var gFontSize=40;
 
   
 
@@ -24,17 +25,24 @@ function onOpenMemeGenerator(img) {
   
 }
 
+ function onDeleteText(){
+  removeLine(selectedLine)
+  renderMeme()
+  isSelected = false
+}
+
 function clearCanvas() {
     gCtx.clearRect(x, y, gCanvas.width, gCanvas.height)
   }
 
 
   function drawText(line, x, y,textColor=gColorText) {
-    if(line.size) gFont = line.size 
+    if(line.size) gFontSize = line.size 
+    if(line.font) gFont = line.font 
     gCtx.lineWidth = 1;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = textColor ;
-    gCtx.font = `${gFont}px Impact`;
+    gCtx.font = `${gFontSize}px ${gFont}`;
     if(line.txt) line = line.txt
     gCtx.fillText(line, x, y);
     gCtx.strokeText(line, x, y);
@@ -57,7 +65,7 @@ function clearCanvas() {
 
   function ShowTextInput(txt){
     if(isSelected){
-      if(selectedLine>-1)gCurrLine=removeLine(selectedLine)
+      if(selectedLine>-1)gCurrLine=removeLine(selectedLine-1)
       renderMeme()
       drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
     }else drawText(txt,50, 200,gColorText)
@@ -83,8 +91,8 @@ function onDrawText(txt) {
   width=gCtx.measureText(txt).width
   var txt = document.getElementById('Meme')
   
-  if(isSelected)setLineTxt(txt.value, gFont , gCurrLine[0].pos)
-  else setLineTxt(txt.value, gFont)
+  if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos)
+  else setLineTxt(txt.value, gFontSize)
     txt.value = ''
     isSelected=false
     
@@ -92,9 +100,12 @@ function onDrawText(txt) {
 
 
 function onChangeFontSize(num){
-  gFont += num;
+  gFontSize += num;
 
 }
+ function onchangeFont(font){
+   gFont = font
+ }
 
  
 
@@ -157,12 +168,12 @@ function onChooseLine(){
   if(selectedLine === -1) selectedLine=0
   if(gMeme.lines[selectedLine]){
     var prevLine= gMeme.lines[selectedLine-1]
-    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFont -2, width , prevLine.pos.y +2)
+    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFontSize -2, width , prevLine.pos.y +2)
     renderMeme()
     isSelected= true
     var line= gMeme.lines[selectedLine]
     gCtx.strokeStyle = 'blue';
-    gCtx.strokeRect(line.pos.x -2 , line.pos.y-gFont -2, width, line.pos.y+2 );
+    gCtx.strokeRect(line.pos.x -2 , line.pos.y-gFontSize -2, width, line.pos.y+2 );
    var txt= document.getElementById("Meme")
    txt.value=gMeme.lines[selectedLine].txt 
    selectedLine++
@@ -176,7 +187,7 @@ function isTextClicked(clickedPos) {
   selectedLine= gMeme.lines.findIndex(line =>{
     return(clickedPos.x>=line.pos.x && 
       clickedPos.x<=line.pos.x+width &&
-      clickedPos.y>=line.pos.y-gFont&& 
+      clickedPos.y>=line.pos.y-gFontSize&& 
       clickedPos.y<=line.pos.y);
 })
    return selectedLine

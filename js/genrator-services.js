@@ -32,6 +32,7 @@ function setLineTxt(txt , size ,pos = 0){
   var lineIdx= gCurrMeme.lines.length
 var gtxt={
     txt,
+    font: gFont,
     size,
     align: "center",
     color: gColorText,
@@ -50,6 +51,14 @@ function  setColor(color){
 
 function removeLine(lineIdx){
 var line = gCurrMeme.lines.splice([lineIdx-1],1)
+console.log(gCurrMeme.lines);
+gCurrMeme.lines.forEach(function(line) {
+  if(line.lineIdx > (lineIdx-1)){
+    line.lineIdx = line.lineIdx-1 
+  }
+})
+
+
   selectedLine= -1
 return line
 }
