@@ -68,9 +68,11 @@ function clearCanvas() {
 
   function ShowTextInput(txt){
     if(isSelected){
-      if(selectedLine>-1)gCurrLine=removeLine(selectedLine-1)
+      if(selectedLine>-1){
+      gCurrLine=removeLine(selectedLine-1)
       renderMeme()
       drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
+      }
     }else drawText(txt,50, 200,gColorText)
   }
 
@@ -97,7 +99,7 @@ function onDrawText(txt) {
   if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos)
   else setLineTxt(txt.value, gFontSize)
     txt.value = ''
-    isSelected=false
+    // isSelected=false
     
 }
 
