@@ -50,7 +50,7 @@ function  setColor(color){
 
 
 function removeLine(lineIdx){
-var line = gCurrMeme.lines.splice([lineIdx-1],1)
+var line = gCurrMeme.lines.splice([lineIdx],1)
 console.log(gCurrMeme.lines);
 gCurrMeme.lines.forEach(function(line) {
   if(line.lineIdx > (lineIdx-1)){

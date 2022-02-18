@@ -26,9 +26,12 @@ function onOpenMemeGenerator(img) {
 }
 
  function onDeleteText(){
-  removeLine(selectedLine)
-  renderMeme()
-  isSelected = false
+   if(isSelected){
+    removeLine(selectedLine)
+    renderMeme()
+    isSelected = false
+   }
+  
 }
 
 function clearCanvas() {
