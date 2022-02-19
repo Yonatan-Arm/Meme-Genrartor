@@ -27,7 +27,6 @@
         <canvas id="my-canvas" height="400"  width="500" onclick="draw(event)" ></canvas>
       </div>
       <section class="Editor-Tools flex align-items">
-        
         <input  id="Meme" oninput="ShowTextInput(this.value)" type="text" class="input-txt" placeholder="write your meme"/>
         <div class="button-Edit ">
             <button class="btn-add" onclick="onDrawText()">➕</button>
@@ -58,6 +57,10 @@
             <button class="btn-Sociel" onclick="uploadImg()"><i class="fa fa-share" aria-hidden="true"></i> Upload Image </button>
             <div class="share-container" onclick="onShare()"></div>
         </div>
+          
+        <div class="share-container"></div>
+        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+       
       </section>
     </section>
 

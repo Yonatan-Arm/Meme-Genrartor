@@ -11,7 +11,6 @@ var gFont ="Impact"
 var isSelected = false;
 var gAlignText='center';
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-addListeners()
 var isDrag=false;
 var width=40;
 var gFontSize=40;
@@ -19,17 +18,16 @@ var gFontSize=40;
   
 
 function onOpenMemeGenerator(img) {
-  console.log('run')
    gCanvas = document.getElementById("my-canvas");
    gCtx = gCanvas.getContext("2d");
-  closeGallery();
+   closeGallery();
+   addListeners()
   renderImgMeme(img) 
   
 }
 
  function onDeleteText(){
    if(isSelected){
-     if(selectedLine>0) selectedLine= selectedLine-1
     removeLine(selectedLine)
     renderMeme()
     isSelected = false
@@ -109,7 +107,6 @@ function onDrawText(txt) {
   if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos , gAlignText)
   else setLineTxt(txt.value, gFontSize, 0 ,gAlignText)
     txt.value = ''
-    // gCurrLine=''
     isSelected=false
     gCurrLine=''
     
@@ -136,7 +133,7 @@ function onChangeColor(color) {
 
 function closeGenerator() {
   var generator = document.querySelector(".Meme-Editor");
-  generator.classList.remove("flex");
+  generator.style.display = "none";
   var canvas = document.getElementById("my-canvas");
   canvas.style.display = "none";
 }
@@ -150,7 +147,6 @@ function resizeCanvas() {
     gMeme.lines.forEach(line => updatePos(line.lineIdx,(line.pos.x+ newResize) ,line.pos.y))
     renderMeme()
   }
-  // gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 function addListeners() {
@@ -195,8 +191,9 @@ function onChooseLine(){
     }
     isSelected= true
     var line= gMeme.lines[selectedLine]
+    var distance = gCtx.measureText(line.txt).width
     gCtx.strokeStyle = 'blue';
-    gCtx.strokeRect(line.pos.x -width  , line.pos.y-gFontSize -2, (line.pos.x + 5), line.pos.y+2 );
+    gCtx.strokeRect(line.pos.x - distance  , line.pos.y-gFontSize -2, (line.pos.x + distance), line.pos.y+2 );
    var txt= document.getElementById("Meme")
    txt.value=gMeme.lines[selectedLine].txt 
    selectedLine++
@@ -208,21 +205,19 @@ function onChooseLine(){
 
 
 function isTextClicked(clickedPos) {
-  selectedLine= gMeme.lines.findIndex(line => 
-     line.pos.x- 60 < clickedPos.x &&
-      line.pos.x + width > clickedPos.x &&
-      line.pos.y  > clickedPos.y &&
-      line.pos.y-line.size <= clickedPos.y
+  selectedLine = gMeme.lines.findIndex(line => {
+  var distance = gCtx.measureText(line.txt).width
+    return( line.pos.x- distance < clickedPos.x +width &&
+      line.pos.x  > clickedPos.x &&
+      line.pos.y  < clickedPos.y+ 10 &&
+      line.pos.y+line.size >= clickedPos.y)
     
-)
+  })
    return selectedLine
 }
 
 
-
-
 function onMove(ev) {
-  console.log('onMove()');
   if (isDrag) {
       const pos = getEvPos(ev)
       const dx = pos.x - gStartPos.x
@@ -231,12 +226,10 @@ function onMove(ev) {
       gMeme.lines[selectedLine].pos= gStartPos 
       renderMeme()
      
-      // renderCanvas()
   }
 }
 
 function onUp() {
-  console.log('onUp()');
   setLineDrag(false)
   selectedLine = -1;
   document.body.style.cursor = 'grab'
@@ -311,4 +304,30 @@ function uploadImg() {
   }
   
   doUploadImg(imgDataUrl, onSuccess);
+}
+
+
+function onImgInput(ev) {
+  loadImageFromInput(ev, uploadImg)
+}
+
+function uploadImg(img) {
+    gCurrImg= img
+    renderMeme()
+}
+
+function loadImageFromInput(ev, onImageReady) {
+  document.querySelector('.share-container').innerHTML = ''
+  var reader = new FileReader()
+
+  reader.onload = function (event) {
+      console.log('onload');
+      var img = new Image()
+      // Render on canvas
+      img.onload = onImageReady.bind(null, img)
+      img.src = event.target.result
+      gImg = img
+  }
+  console.log('after');
+  reader.readAsDataURL(ev.target.files[0])
 }
