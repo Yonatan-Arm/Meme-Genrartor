@@ -1,11 +1,11 @@
 /* setup */
-@import url("style/setup/vars.css");
+@import url("setup/vars.css");
 
 
 
 /* base */
-@import url("./basic/base.css");
-@import url("./basic/helpers.css");
+@import url("basic/base.css");
+@import url("basic/helpers.css");
 @import url("basic/layout.css");
  
 
@@ -17,4 +17,4 @@
 
 
 /* media-quary */
-@import url("./setup/media-quary.css");
+@import url("setup/media-quary.css");
