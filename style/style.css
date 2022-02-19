@@ -1,21 +1,21 @@
 /* setup */
 
-@import url("style/setup/vars.css");
+@import url("/style/setup/vars.css");
 
 
 
 
 /* base */
 
-@import url("style/basic/base.css");
-@import url("style/basic/helpers.css");
-@import url("style/basic/layout.css");
+@import url("/style/basic/base.css");
+@import url("/style/basic/helpers.css");
+@import url("/style/basic/layout.css");
  
 
 /* components */
-@import url("style/components/main-header.css"); 
-@import url("style/components/meme-generator.css"); 
-@import url("style/components/image-gallery.css"); 
+@import url("/style/components/main-header.css"); 
+@import url("/style/components/meme-generator.css"); 
+@import url("/style/components/image-gallery.css"); 
 
 
 
@@ -24,6 +24,6 @@
 
 /* media-quary */
 
-@import url("style/setup/media-quary.css");
+@import url("/style/setup/media-quary.css");
 
 
