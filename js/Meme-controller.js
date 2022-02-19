@@ -27,6 +27,7 @@ function onOpenMemeGenerator(img) {
 
  function onDeleteText(){
    if(isSelected){
+     if(selectedLine>0) selectedLine= selectedLine-1
     removeLine(selectedLine)
     renderMeme()
     isSelected = false
@@ -68,11 +69,10 @@ function clearCanvas() {
 
   function ShowTextInput(txt){
     if(isSelected){
-      if(selectedLine>-1){
-      gCurrLine=removeLine(selectedLine-1)
-      renderMeme()
-      drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
-      }
+        if(!gCurrLine) gCurrLine=removeLine(selectedLine-1)
+        renderMeme()
+        drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
+        
     }else drawText(txt,50, 200,gColorText)
   }
 
@@ -99,7 +99,8 @@ function onDrawText(txt) {
   if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos)
   else setLineTxt(txt.value, gFontSize)
     txt.value = ''
-    // isSelected=false
+    // gCurrLine=''
+    isSelected=false
     
 }
 
@@ -173,8 +174,10 @@ function onChooseLine(){
   if(selectedLine === -1) selectedLine=0
   if(gMeme.lines[selectedLine]){
     var prevLine= gMeme.lines[selectedLine-1]
-    if(selectedLine>0) gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFontSize -2, width , prevLine.pos.y +2)
+    if(selectedLine>0){
+     gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFontSize -2, width , prevLine.pos.y +2)
     renderMeme()
+    }
     isSelected= true
     var line= gMeme.lines[selectedLine]
     gCtx.strokeStyle = 'blue';

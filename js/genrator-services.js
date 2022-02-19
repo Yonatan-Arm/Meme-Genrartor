@@ -42,6 +42,7 @@ var gtxt={
 
 gCurrMeme.lines.push(gtxt)
 renderMeme(txt)
+
 }
 
 function  setColor(color){
