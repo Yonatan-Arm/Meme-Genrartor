@@ -31,16 +31,16 @@
         <input  id="Meme" oninput="ShowTextInput(this.value)" type="text" class="input-txt" placeholder="write your meme"/>
         <div class="button-Edit ">
             <button class="btn-add" onclick="onDrawText()">➕</button>
-            <button class="btn-delete" onclick="onDeleteText()">🗑</button>
+            <button class="btn-delete" onclick="onDeleteText()"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <button class="btn-next" onclick="onChooseLine()">↕</button>
         </div>
         <section class="font-style">
             <button class="btn-font" onclick="onChangeFontSize(10)">🅰➕</button>
             <button class="btn-font"  onclick="onChangeFontSize(-10)">🅰➖</button>
-            <button class="btn-font" onclick="onSetAlignText('center')">≡</button>
+            <button class="btn-font" onclick="onSetAlignText('center')"><i class="fa fa-align-justify" aria-hidden="true"></i></button>
             <button class="btn-font"  onclick="onSetAlignText('left')"> <i class="fa fa-align-left"></i> </button>
             <button class="btn-font" onclick="onSetAlignText('right')"> <i class="fa fa-align-right"></i> </button>
-            <select   onchange="onchangeFont(this.value)" name="fonts" placeholder="IMPACT" >
+            <select  class="fonts" onchange="onchangeFont(this.value)" name="fonts" placeholder="IMPACT" >
          <option>IMPACT</option>
             <option>Ariel</option>
             <option>David</option>
@@ -53,17 +53,17 @@
         </section>
         <div class="Sociel">
             <a href="#" onclick="OnDownload(this)" download="myphoto">
-            <button class="btn-Sociel">download</button>
+            <button class="btn-Sociel"><i class="fa fa-download" aria-hidden="true"> download</i></button>
             </a>
-            <button class="btn-Sociel" onclick="onShare()">share</button>
-            
+            <button class="btn-Sociel" onclick="uploadImg()"><i class="fa fa-share" aria-hidden="true"></i> Upload Image </button>
+            <div class="share-container" onclick="onShare()"></div>
         </div>
       </section>
     </section>
 
     <script src="js/genrator-services.js"></script>
     <script src="js/gallery-service.js"></script>
-    <script src="js/Meme-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/Meme-controller.js"></script>
   </body>
 </html>

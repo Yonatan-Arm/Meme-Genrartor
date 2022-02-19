@@ -82,12 +82,13 @@ function clearCanvas() {
         drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText , gAlignText)
     }else{ 
       renderMeme()
-      drawText(txt,200, 200,gColorText)
+      drawText(txt,gCanvas.width /4 , gCanvas.height /2,gColorText)
     }
   }
 
   function updatePos(line,x,y){
     if(!gMeme.lines[line])return
+    if(x<0 || x > gCanvas.width-100 )x=100
 gMeme.lines[line].pos= {x,y}
   }
 
@@ -142,8 +143,13 @@ function closeGenerator() {
 
 function resizeCanvas() {
   var elContainer = document.querySelector(".canvas-container");
+  newWidth = elContainer.offsetWidth -10;
+  var newResize= newWidth - gCanvas.width
   gCanvas.width = elContainer.offsetWidth -10;
-  renderMeme()
+  if(gMeme){
+    gMeme.lines.forEach(line => updatePos(line.lineIdx,(line.pos.x+ newResize) ,line.pos.y))
+    renderMeme()
+  }
   // gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -202,14 +208,17 @@ function onChooseLine(){
 
 
 function isTextClicked(clickedPos) {
-  selectedLine= gMeme.lines.findIndex(line =>{
-    return(clickedPos.x>=line.pos.x- width && 
-      clickedPos.x<=line.pos.x+10 &&
-      clickedPos.y>=line.pos.y-gFontSize&& 
-      clickedPos.y<=line.pos.y +10);
-})
+  selectedLine= gMeme.lines.findIndex(line => 
+     line.pos.x- 60 < clickedPos.x &&
+      line.pos.x + width > clickedPos.x &&
+      line.pos.y  > clickedPos.y &&
+      line.pos.y-line.size <= clickedPos.y
+    
+)
    return selectedLine
 }
+
+
 
 
 function onMove(ev) {
@@ -221,6 +230,7 @@ function onMove(ev) {
       moveLine(dx, dy)
       gMeme.lines[selectedLine].pos= gStartPos 
       renderMeme()
+     
       // renderCanvas()
   }
 }
@@ -266,3 +276,39 @@ function onSetAlignText(val){
   gAlignText = val
 }
 
+
+
+function doUploadImg(imgDataUrl, onSuccess) {
+
+  const formData = new FormData();
+  formData.append('img', imgDataUrl)
+
+  fetch('//ca-upload.com/here/upload.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(res => res.text())
+  .then((url)=>{
+      console.log('Got back live url:', url);
+      onSuccess(url)
+  })
+  .catch((err) => {
+      console.error(err)
+  })
+}
+
+function uploadImg() {
+  const imgDataUrl = gCanvas.toDataURL("image/jpeg");
+
+  // A function to be called if request succeeds
+  function onSuccess(uploadedImgUrl) {
+      const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+
+      document.querySelector('.share-container').innerHTML = `
+      <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+         Share   
+      </a>`
+  }
+  
+  doUploadImg(imgDataUrl, onSuccess);
+}

@@ -77,20 +77,20 @@ function draw(lineIdx,text,textColor) {
   if(!textColor) textColor=gColorText
   switch (lineIdx) {
     case 0:
-      drawText(line,200, 50,textColor);
-      updatePos(lineIdx,200, 50)
+      drawText(line,gCanvas.width /4 , gCanvas.height / 4,textColor);
+      updatePos(lineIdx,gCanvas.width /4 , gCanvas.height /4)
       break;
     case 1:
-      drawText(line,200, 350,textColor);
-      updatePos(lineIdx,200, 350)
+      drawText(line,gCanvas.width /4 , gCanvas.height-20 ,textColor);
+      updatePos(lineIdx,gCanvas.width /4 , gCanvas.height - 20)
       break;
     case 2:
-      drawText(line,200, 200,textColor);
-      updatePos(lineIdx,200, 200)
+      drawText(line,gCanvas.width /4 , gCanvas.height /2,textColor);
+      updatePos(lineIdx,gCanvas.width /4 , gCanvas.height /2)
       break;
       default:
-      var x= getRandomIntInclusive(100,200)
-      var y= getRandomIntInclusive(100, 200)
+      var x= getRandomIntInclusive(10 ,gCanvas.width /2 )
+      var y= getRandomIntInclusive(10 , gCanvas.height -10 )
       drawText(line,x,y,textColor);
       updatePos(lineIdx,x, y)
       break;

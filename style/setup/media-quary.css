@@ -32,10 +32,15 @@ body {
 }
 .main-layout{
     pointer-events: auto;
+    margin: 1em auto;
 }
 .btn-close{
     grid-area: btn;
     pointer-events: auto;
+  
+}
+.button-Edit{
+    margin-inline-start: 30%;
 }
 
 .btn-page{
@@ -46,18 +51,53 @@ body {
 }
 .Meme-Editor{
     flex-direction: column;
-    gap: 2rem;
+    width: 70vw;
+    gap: 1rem;
 }
 .canvas-container{
     width: 70%;
 }
 .Editor-Tools{
     flex-direction: row;
-    width: 80%;
+    width: 70VW;
     flex-wrap: wrap;
-    gap: 0;
+    gap: .5rem;
     justify-content: center;
 }
+.Sociel{
+    flex-direction: inherit;
+}
+#my-canvas{
+    height: 50vh;
+    width: 60vw;
+}
+
+ }
+
+ @media (max-width :500px){
+     .image-Gallery {
+        padding : 1rem;
+        width:100% ;
+        display: grid;
+        grid-template-columns: repeat( 2 , minmax(50px, 1fr) );
+        gap: 10px;
+     }
+     .Meme-Editor {
+        display: none;
+        width: 80vw;
+        gap: 1rem;
+        padding: 0 2rem
+     }
+     .main-layout {
+        margin: 0;
+    }
+    #my-canvas{
+        height: 50vh;
+        width: 80vw;
+    }
+    .button-Edit{
+        margin-inline-start: 0;
+    }
 
  }
 
