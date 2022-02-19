@@ -1,14 +1,12 @@
 /* setup */
-<<<<<<< HEAD
+
 @import url("/setup/vars.css");
-=======
-@import url("/setup/vars.css");
->>>>>>> 6e254104e5a750c8bade51b2176b208ec498f771
+
 
 
 
 /* base */
-<<<<<<< HEAD
+
 @import url("/basic/base.css");
 @import url("/basic/helpers.css");
 @import url("/basic/layout.css");
@@ -18,23 +16,14 @@
 @import url("/components/main-header.css"); 
 @import url("/components/meme-generator.css"); 
 @import url("/components/image-gallery.css"); 
-=======
-@import url("/basic/base.css");
-@import url("/basic/helpers.css");
-@import url("/basic/layout.css");
- 
 
-/* components */
-@import url("/components/main-header.css"); 
-@import url("/components/meme-generator.css"); 
-@import url("/components/image-gallery.css"); 
->>>>>>> 6e254104e5a750c8bade51b2176b208ec498f771
+
+
 
 
 
 /* media-quary */
-<<<<<<< HEAD
+
 @import url("/setup/media-quary.css");
-=======
-@import url("/setup/media-quary.css");
->>>>>>> 6e254104e5a750c8bade51b2176b208ec498f771
+
+
