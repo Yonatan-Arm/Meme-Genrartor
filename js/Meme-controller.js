@@ -74,7 +74,7 @@ function clearCanvas() {
     
     if(isSelected){
         if(!gCurrLine) {
-          gCurrLine=removeLine(selectedLine-1) 
+          gCurrLine=removeLine(selectedLine) 
         }
         renderMeme()
         drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText , gAlignText)
@@ -207,9 +207,9 @@ function onChooseLine(){
 function isTextClicked(clickedPos) {
   selectedLine = gMeme.lines.findIndex(line => {
   var distance = gCtx.measureText(line.txt).width
-    return( line.pos.x- distance < clickedPos.x +width &&
-      line.pos.x  > clickedPos.x &&
-      line.pos.y  < clickedPos.y+ 10 &&
+    return( line.pos.x < clickedPos.x+ distance &&
+      line.pos.x +distance  > clickedPos.x &&
+      line.pos.y -gFontSize < clickedPos.y+ 10 &&
       line.pos.y+line.size >= clickedPos.y)
     
   })
