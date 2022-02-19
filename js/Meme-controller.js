@@ -6,8 +6,10 @@ var gCurrImg;
 var selectedLine =-1;
 var gStartPos;
 var gCurrLine;
+var prevLine;
 var gFont ="Impact"
 var isSelected = false;
+var gAlignText='center';
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 addListeners()
 var isDrag=false;
@@ -31,6 +33,7 @@ function onOpenMemeGenerator(img) {
     removeLine(selectedLine)
     renderMeme()
     isSelected = false
+    gCurrLine=''
    }
   
 }
@@ -43,7 +46,9 @@ function clearCanvas() {
   function drawText(line, x, y,textColor=gColorText) {
     if(line.size) gFontSize = line.size 
     if(line.font) gFont = line.font 
+    if(line.align) gAlignText = line.align
     gCtx.lineWidth = 1;
+    gCtx.textAlign = gAlignText;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = textColor ;
     gCtx.font = `${gFontSize}px ${gFont}`;
@@ -58,7 +63,7 @@ function clearCanvas() {
     var lineIdx=0
    gCurrMeme.lines.forEach(line =>{
      if(line.pos.x){
-      drawText(line,line.pos.x,line.pos.y,line.color)
+      drawText(line,line.pos.x,line.pos.y,line.color , line.align)
      }else{
        draw(lineIdx,line.txt)
      }
@@ -68,12 +73,17 @@ function clearCanvas() {
   
 
   function ShowTextInput(txt){
+    
     if(isSelected){
-        if(!gCurrLine) gCurrLine=removeLine(selectedLine-1)
+        if(!gCurrLine) {
+          gCurrLine=removeLine(selectedLine-1) 
+        }
         renderMeme()
-        drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText)
-        
-    }else drawText(txt,50, 200,gColorText)
+        drawText(txt,gCurrLine[0].pos.x,gCurrLine[0].pos.y,gColorText , gAlignText)
+    }else{ 
+      renderMeme()
+      drawText(txt,200, 200,gColorText)
+    }
   }
 
   function updatePos(line,x,y){
@@ -95,12 +105,12 @@ function renderImgMeme(img) {
 function onDrawText(txt) {
   width=gCtx.measureText(txt).width
   var txt = document.getElementById('Meme')
-  
-  if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos)
-  else setLineTxt(txt.value, gFontSize)
+  if(isSelected)setLineTxt(txt.value, gFontSize , gCurrLine[0].pos , gAlignText)
+  else setLineTxt(txt.value, gFontSize, 0 ,gAlignText)
     txt.value = ''
     // gCurrLine=''
     isSelected=false
+    gCurrLine=''
     
 }
 
@@ -173,18 +183,18 @@ function onDown(ev) {
 function onChooseLine(){ 
   if(selectedLine === -1) selectedLine=0
   if(gMeme.lines[selectedLine]){
-    var prevLine= gMeme.lines[selectedLine-1]
-    if(selectedLine>0){
-     gCtx.clearRect(prevLine.pos.x -2 , prevLine.pos.y-gFontSize -2, width , prevLine.pos.y +2)
+    if(selectedLine>0 || prevLine){
+     gCtx.clearRect(prevLine.pos.x-width   , prevLine.pos.y-gFontSize -2, (prevLine.pos.x + 5) , prevLine.pos.y +2)
     renderMeme()
     }
     isSelected= true
     var line= gMeme.lines[selectedLine]
     gCtx.strokeStyle = 'blue';
-    gCtx.strokeRect(line.pos.x -2 , line.pos.y-gFontSize -2, width, line.pos.y+2 );
+    gCtx.strokeRect(line.pos.x -width  , line.pos.y-gFontSize -2, (line.pos.x + 5), line.pos.y+2 );
    var txt= document.getElementById("Meme")
    txt.value=gMeme.lines[selectedLine].txt 
    selectedLine++
+   prevLine= gMeme.lines[selectedLine-1]
   }
   if(!gMeme.lines[selectedLine]) selectedLine = -1
 }
@@ -193,10 +203,10 @@ function onChooseLine(){
 
 function isTextClicked(clickedPos) {
   selectedLine= gMeme.lines.findIndex(line =>{
-    return(clickedPos.x>=line.pos.x && 
-      clickedPos.x<=line.pos.x+width &&
+    return(clickedPos.x>=line.pos.x- width && 
+      clickedPos.x<=line.pos.x+10 &&
       clickedPos.y>=line.pos.y-gFontSize&& 
-      clickedPos.y<=line.pos.y);
+      clickedPos.y<=line.pos.y +10);
 })
    return selectedLine
 }
@@ -249,5 +259,10 @@ function getEvPos(ev) {
       }
   }
   return pos
+}
+
+
+function onSetAlignText(val){
+  gAlignText = val
 }
 

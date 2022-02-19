@@ -28,13 +28,13 @@ function drawImg(elImg) {
 }
 
  
-function setLineTxt(txt , size ,pos = 0){
+function setLineTxt(txt , size ,pos = 0 , align ){
   var lineIdx= gCurrMeme.lines.length
 var gtxt={
     txt,
     font: gFont,
     size,
-    align: "center",
+    align,
     color: gColorText,
     lineIdx,
     pos
@@ -51,8 +51,8 @@ function  setColor(color){
 
 
 function removeLine(lineIdx){
-var line = gCurrMeme.lines.splice([lineIdx],1)
-console.log(gCurrMeme.lines);
+  if(lineIdx<0) var line = gCurrMeme.lines.splice([lineIdx],1)
+  else var line = gCurrMeme.lines.splice([lineIdx-1],1)
 gCurrMeme.lines.forEach(function(line) {
   if(line.lineIdx > (lineIdx-1)){
     line.lineIdx = line.lineIdx-1 
@@ -77,20 +77,20 @@ function draw(lineIdx,text,textColor) {
   if(!textColor) textColor=gColorText
   switch (lineIdx) {
     case 0:
-      drawText(line,50, 50,textColor);
-      updatePos(lineIdx,50, 50)
+      drawText(line,200, 50,textColor);
+      updatePos(lineIdx,200, 50)
       break;
     case 1:
-      drawText(line,50, 400,textColor);
-      updatePos(lineIdx,50, 400)
+      drawText(line,200, 350,textColor);
+      updatePos(lineIdx,200, 350)
       break;
     case 2:
-      drawText(line,50, 200,textColor);
-      updatePos(lineIdx,50, 200)
+      drawText(line,200, 200,textColor);
+      updatePos(lineIdx,200, 200)
       break;
       default:
-      var x= getRandomIntInclusive(50,200)
-      var y= getRandomIntInclusive(50, 200)
+      var x= getRandomIntInclusive(100,200)
+      var y= getRandomIntInclusive(100, 200)
       drawText(line,x,y,textColor);
       updatePos(lineIdx,x, y)
       break;

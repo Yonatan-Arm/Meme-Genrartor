@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Meme Generator</title>
   </head>
 
@@ -36,10 +37,10 @@
         <section class="font-style">
             <button class="btn-font" onclick="onChangeFontSize(10)">🅰➕</button>
             <button class="btn-font"  onclick="onChangeFontSize(-10)">🅰➖</button>
-            <button class="btn-font" onclick="onAlignText()">≡</button>
-            <button class="btn-font"  onclick="">≡</button>
-            <button class="btn-font" onclick="">≡</button>
-            <select   onchange="onchangeFont(this.value)"  name="fonts" placeholder="IMPACT" />
+            <button class="btn-font" onclick="onSetAlignText('center')">≡</button>
+            <button class="btn-font"  onclick="onSetAlignText('left')"> <i class="fa fa-align-left"></i> </button>
+            <button class="btn-font" onclick="onSetAlignText('right')"> <i class="fa fa-align-right"></i> </button>
+            <select   onchange="onchangeFont(this.value)" name="fonts" placeholder="IMPACT" >
          <option>IMPACT</option>
             <option>Ariel</option>
             <option>David</option>
