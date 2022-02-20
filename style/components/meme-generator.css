@@ -11,17 +11,20 @@ background-color: #fff;
     padding: 0 2rem;
 }
 .canvas-container{
-    width: 75%;
+    width: 50vw;
+    max-width: 500px;
 }
+
 #my-canvas{
-    height: 100%;
-    width:90%;
+    height:100%;
+    width:100%;
 }
 .Editor-Tools{
-    background-color: #D3DEDC;
+    background-color: #70a9a1;
     padding:20px;
     flex-direction: column;
     gap:.5rem;
+    border-radius: 12px;
 }
 
 .input-txt{
@@ -29,10 +32,13 @@ background-color: #fff;
     width: 80%;
     border-radius: 12px;
     height: 2.5rem;
+    text-align: center;
 }
 .button-Edit{
     width: 80%;
-    margin-inline-start: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
 }
 
 .btn-add{
@@ -49,15 +55,17 @@ background-color: #fff;
 .btn-next{
     width: 2rem;
     height: 2rem;
-    background-color:#3D56B2;
+    background-color:goldenrod;
 }
 .font-style{
-    background-color: dimgrey;
+    background-color: var(--clr2);
     width: 80%;
     display: flex;
     flex-wrap: wrap;
     gap: 0.2rem;
-    border-radius: 12px
+    border-radius: 12px;
+    height:5rem;
+    padding: .5rem;
 }
 .fonts{
     height: 1.5rem;
@@ -66,7 +74,6 @@ background-color: #fff;
 .btn-font{
     width: 3rem;
     height: 1.5rem;
-    border-radius: 12px
 }
 .btn-Sociel{
     width: 5rem;

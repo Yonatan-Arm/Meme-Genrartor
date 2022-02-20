@@ -1,14 +1,15 @@
 
- @media (max-width :800px){
+ @media (max-width :920px){
 .btn-menu{
     display:block;
     background-color: var(--clr2);
 }
 .pages-btn{
     display:none;
-    max-width: 70vw;
+    min-width: 60vw;
     max-height:60%;
     text-align: center;
+    z-index: 20;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -18,7 +19,6 @@
     color: rgb(184, 184, 184);
     box-shadow: 10px 10px 10px 10px;
     opacity: 1;
-    pointer-events: none;
     transition: opacity .3s;
     grid-area: pages;
     grid-template-areas: 
@@ -39,9 +39,7 @@ body {
     pointer-events: auto;
   
 }
-.button-Edit{
-    margin-inline-start: 30%;
-}
+
 
 .btn-page{
     height: 2rem;
@@ -52,14 +50,12 @@ body {
 .Meme-Editor{
     flex-direction: column;
     width: 70vw;
+    height: 80%;
     gap: 1rem;
-}
-.canvas-container{
-    width: 70%;
 }
 .Editor-Tools{
     flex-direction: row;
-    width: 70VW;
+    width: 80%;
     flex-wrap: wrap;
     gap: .5rem;
     justify-content: center;
@@ -68,8 +64,8 @@ body {
     flex-direction: inherit;
 }
 #my-canvas{
-    height: 50vh;
-    width: 60vw;
+    height: 100%;
+    width: 100%;
 }
 
  }
@@ -84,23 +80,31 @@ body {
      }
      .Meme-Editor {
         display: none;
-        width: 80vw;
+        width: 90vw;
+        height: 80%;
         gap: 1rem;
         padding: 0 2rem
      }
      .main-layout {
         margin: 0;
     }
-    #my-canvas{
-        height: 50vh;
-        width: 80vw;
-    }
     .button-Edit{
         margin-inline-start: 0;
+    }
+    .canvas-container{
+        width: 100%;
+        height: 30vh;
+    }
+    .Editor-Tools{
+        width: 100%;
+    }
+    .font-style{
+        padding: 0;
     }
 
  }
 
+ 
 
 
 

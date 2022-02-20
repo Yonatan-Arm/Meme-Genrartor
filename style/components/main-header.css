@@ -2,20 +2,25 @@
     height: 6rem;
     background-color: var(--clr2);
     padding: 4rem;
+    
 }
 
 .logo{
 font-size: 3em;
+font-family: system-ui, Geneva, Tahoma, sans-serif;
+color:#fff
 }
 
 .btn-page{
     height: 2rem;
     background-color: var(--clr3) ;
-    border-radius: 15%;
+    border-radius: 12px;
 }
 
 .btn-menu{
     display:none;
+    border: none;
+    box-shadow: 5px 5px 30px 5px rgba(49,54,255,0.66);
     
 }
 

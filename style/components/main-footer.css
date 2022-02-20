@@ -1,0 +1,14 @@
+.main-footer{
+    width: 100%;
+    background-color:var(--clr2);
+    justify-content: center;
+    height: 10vh;
+    margin-top: 1rem;
+}
+
+.main-footer p{
+font-size:2rem;
+font-family: Arial, Helvetica, sans-serif;
+color:#fff
+
+}
